@@ -65,7 +65,7 @@ def predict():
         except AttributeError:
             probability = None
 
-        label = "At Risk" if prediction[0] == -1 else "Normal"
+        label = "Dementia" if prediction[0] == 1 else "Non-Dementia"
 
         return jsonify({
             "prediction": label,
@@ -83,6 +83,5 @@ def predict():
                 os.remove(path)
 
 if __name__ == '__main__':
-    import os
     port = int(os.environ.get("PORT", 5000))
     app.run(host="0.0.0.0", port=port, debug=True)
